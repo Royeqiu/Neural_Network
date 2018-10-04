@@ -4,20 +4,16 @@ from sklearn import datasets
 from scipy import special
 pp = pprint.PrettyPrinter(indent=4)
 feature_size = 4
-
 def softmax(x,der=False):
     if der:
         return np.exp(x)*(np.sum(np.exp(x))-np.exp(x)) / np.power(np.sum(np.exp(x)),2)
     e = np.exp(x - np.max(x, axis=1).reshape((-1, 1)))
     return e / e.sum(axis=1).reshape((-1, 1))
-
 def sigmoid(x,der=False):
     if der:
         return x*(1-x)
     else:
         return special.expit(x)
-
-
 def generate_batch(data,batch_size):
     data_set = []
     batch = []
@@ -28,9 +24,7 @@ def generate_batch(data,batch_size):
             batch = []
         batch.append(data[i])
     return data_set
-
 def random_sample(input, output):
-
     validation_input = []
     validation_output = []
     for i in range(0,10):
@@ -41,13 +35,9 @@ def random_sample(input, output):
         output = np.delete(output, picked_number, 0)
 
     return validation_input,validation_output
-
 iris = datasets.load_iris()
 input =iris['data'][:,:feature_size]
 output = iris['target']
-
-
-
 def int_to_vector(data,label_size):
     vector = np.zeros((len(data),label_size),dtype='f')
     for i,single in enumerate(data):
@@ -58,7 +48,7 @@ second_layer_size = 4
 np.random.seed(1)
 
 w1 = 2 * np.random.random((feature_size,second_layer_size))-1 #4,4
-w2 = 2 * np.random.random((second_layer_size,label_size))-1 #4,1
+w2 = 2 * np.random.random((second_layer_size,label_size))-1 #4,3
 epoch = 30000
 
 new_output=[]
