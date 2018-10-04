@@ -69,7 +69,6 @@ output = np.asarray(new_output)
 validation_input,validation_output=random_sample(input,output)
 for ep in range(0,epoch):
     label_vector = int_to_vector(output,label_size)
-    #print(label_vector.shape)
     l1 = input
     l2 = sigmoid(np.dot(l1,w1))
     l3 = softmax(np.dot(l2,w2))
